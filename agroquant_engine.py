@@ -1,6 +1,7 @@
 import json
 import os
 import logging
+from modulo_compliance import ModuloCompliance
 
 # Configuração limpa para o terminal executivo
 logging.basicConfig(level=logging.INFO, format='%(message)s')
@@ -89,12 +90,24 @@ class AgroQuantEngine:
         lucro_tecnologia = capital_salvo - self.custo_tecnologia
         roi_projeto = (lucro_tecnologia / self.custo_tecnologia) * 100
 
-        # Dispara o painel executivo
+        # 5. GERAÇÃO DO REPORTE DE COMPLIANCE (CPC 48)
+        dados_auditoria = {
+            'capital_financiado': self.capital_financiado,
+            'arrobas_totais': arrobas_totais,
+            'taxa_di_travada': di_travado,
+            'preco_bgi_travado': preco_venda_travado,
+            'capital_salvo': capital_salvo
+        }
+        
+        compliance = ModuloCompliance()
+        arquivo_audit, hash_audit = compliance.emitir_termo_designacao_hedge(dados_auditoria)
+
+        # Dispara o painel executivo com o Hash
         self.gerar_relatorio(receita_bruta, imposto_recolhido, custo_operacional_total, 
                              despesa_juros_sem_hedge, despesa_juros_com_hedge, 
-                             lucro_sem_hedge, lucro_com_hedge, roi_projeto)
+                             lucro_sem_hedge, lucro_com_hedge, roi_projeto, arquivo_audit, hash_audit)
 
-    def gerar_relatorio(self, rec_bruta, imposto, custo_op, juros_sem, juros_com, lucro_sem, lucro_com, roi):
+    def gerar_relatorio(self, rec_bruta, imposto, custo_op, juros_sem, juros_com, lucro_sem, lucro_com, roi, arq_audit, hash_audit):
         print("\n" + "="*75)
         print(" 🏛️  AGROQUANT ALM - DEMONSTRATIVO DE RESULTADOS (DRE) E ROI")
         print("="*75)
@@ -115,6 +128,10 @@ class AgroQuantEngine:
         print(f"   ► Custo de Implantação Cloud:  R$ {self.custo_tecnologia:>14,.2f}")
         print(f"   ► Capital Salvo do Banco:      R$ {(juros_sem - juros_com):>14,.2f}")
         print(f"   ► Retorno do Investimento:     {roi:>14.0f}% (ROI)")
+        print("="*75)
+        print("🛡️  COMPLIANCE E AUDITORIA (CPC 48)")
+        print(f"   ► Relatório Legal Gerado:      {arq_audit}")
+        print(f"   ► Hash Criptográfico:          {hash_audit[:20]}...{hash_audit[-10:]}")
         print("="*75 + "\n")
 
 if __name__ == "__main__":
