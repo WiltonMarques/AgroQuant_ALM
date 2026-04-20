@@ -1,0 +1,20 @@
+{
+    "metadata": {
+        "projeto": "AgroQuant ALM",
+        "data_atualizacao": "2026-04-20 14:45:35",
+        "origem": "Parametrização Interna (Estudo de Caso)",
+        "descricao": "Estrutura de Custos Físicos e Zootécnicos do Confinamento"
+    },
+    "parametros": {
+        "dias_ciclo": 180,
+        "peso_entrada_arrobas": 13.5,
+        "peso_saida_arrobas": 20.0,
+        "preco_arroba_reposicao": 200.0,
+        "diaria_confinamento_nutricao": 10.0,
+        "sanidade_protocolo_cabeca": 50.0,
+        "operacional_fixo_cabeca": 50.0
+    },
+    "resultado_fisico": {
+        "custo_total_por_arroba_produzida": 230.0
+    }
+}

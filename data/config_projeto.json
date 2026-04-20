@@ -1,0 +1,18 @@
+{
+    "metadata": {
+        "projeto": "AgroQuant ALM",
+        "ultima_alteracao": "2026-04-20",
+        "descricao": "Parametros globais de financiamento e escala operacional"
+    },
+    "financeiro": {
+        "capital_financiado": 30000000.00,
+        "spread_bancario": 3.0,
+        "custo_tecnologia": 50000.00,
+        "selic_estresse": 13.5
+    },
+    "operacional": {
+        "cabecas_confinadas": 10000,
+        "unidade_medida": "cabecas",
+        "regime": "Confinamento Intensivo"
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "metadata": {
+        "projeto": "AgroQuant ALM",
+        "data_extracao": "2026-04-20 14:30:11",
+        "origem": "SINTÉTICO (Estudo de Caso)",
+        "descricao": "Cotações Arroba do Boi Gordo (Spot e Futuro B3)"
+    },
+    "cotacoes": {
+        "preco_spot_atual": 230.0,
+        "curva_futura": {
+            "BGI_Vencimento_M1": 241.5,
+            "BGI_Vencimento_M3": 253.0,
+            "BGI_Vencimento_M6": 260.0
+        }
+    }
+}
